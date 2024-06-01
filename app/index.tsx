@@ -1,15 +1,14 @@
-import { Text, View } from "react-native";
 
-export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
-  );
+import { useRouter } from "expo-router";
+import { Button, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+export default function IndexPage(){
+    const router= useRouter()
+    return (
+        <SafeAreaView>
+            <Text>Hello this is the index page</Text>
+              <Button title="navigate to other routes" onPress={()=>router.navigate("onBoarding")}/>
+        </SafeAreaView>
+    )
 }
