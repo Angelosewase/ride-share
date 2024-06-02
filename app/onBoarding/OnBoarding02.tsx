@@ -7,8 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const OnBoardin01 = () => {
     const router = useRouter()
   return (
-    <SafeAreaView className='flex-1  items-center '>
-        <TouchableOpacity className='self-end pr-4' >
+    <SafeAreaView className='flex-1  items-center bg-white '>
+        <TouchableOpacity className='self-end pr-4' onPress={()=>router.navigate('/authentication')}>
           <Text className='text-lg text-gray-700'>
             skip
           </Text>
@@ -19,7 +19,7 @@ const OnBoardin01 = () => {
             At anytime
           </Text>
            <View className='w-[75%] mt-2'>
-           <Text className='text-center text-lg leading-6 text-gray-500'>
+           <Text className='text-center text-lg leading-6 text-gray-500 '>
             Sell houses easily with the help of listenary and to make this line big I'm writing more
           </Text>
            </View>

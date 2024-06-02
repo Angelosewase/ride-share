@@ -7,8 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const OnBoardin01 = () => {
     const router = useRouter()
   return (
-    <SafeAreaView className='flex-1  items-center '>
-        <TouchableOpacity className='self-end pr-4' >
+    <SafeAreaView className='flex-1  items-center  bg-white'>
+        <TouchableOpacity className='self-end pr-4' onPress={()=>router.navigate("/authentication")} >
           <Text className='text-lg text-gray-700'>
             skip
           </Text>
@@ -26,7 +26,7 @@ const OnBoardin01 = () => {
 
         </View>
 
-        <TouchableOpacity className='mb-20' onPress={()=> router.navigate('')}>
+        <TouchableOpacity className='mb-20' onPress={()=> router.navigate('/authentication')}>
           <Image source={require('@/assets/ride_share/Group 11.png')} />
         </TouchableOpacity>
     </SafeAreaView>

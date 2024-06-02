@@ -1,4 +1,4 @@
-import { View, Text,Button, Image, StyleSheet,TouchableOpacity} from 'react-native'
+import { View, Text, Image, StyleSheet,TouchableOpacity} from 'react-native'
 import React from 'react'
 import { useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -7,9 +7,10 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const OnBoardin01 = () => {
     const router = useRouter()
   return (
-    <SafeAreaView className='flex-1  items-center '>
+    <SafeAreaView className='flex-1  items-center bg-white'>
         <TouchableOpacity className='self-end pr-4' >
-          <Text className='text-lg text-gray-700'>
+          <Text className='text-lg text-gray-700' onPress={()=> router.navigate("/authentication")
+          }>
             skip
           </Text>
         </TouchableOpacity>
@@ -19,7 +20,7 @@ const OnBoardin01 = () => {
             Anywhere you are
           </Text>
            <View className='w-[75%] mt-2'>
-           <Text className='text-center text-lg leading-6 text-gray-500'>
+           <Text className='text-center text-lg leading-6 text-gray-500 '>
             Sell houses easily with the help of listenary and to make this line big I'm writing more
           </Text>
            </View>

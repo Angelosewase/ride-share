@@ -5,15 +5,18 @@ const OnBoardingLayout = () => {
     <Stack>
       <Stack.Screen name="OnBoarding01" options={{
         headerShown:false,
-        animationDuration:2000
+       animation:"slide_from_right"
       }}/>
       <Stack.Screen name="OnBoarding02" options={{
         headerShown:false,
-        animationDuration:2000
+        animation:"slide_from_right"
+        
+
       }} />
       <Stack.Screen name="OnBoarding03" options={{
         headerShown:false,
-        animationDuration:2000
+        animation:"slide_from_right"        
+
       }}/>
     </Stack>
   )
