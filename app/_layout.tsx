@@ -1,7 +1,9 @@
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
-import { useEffect } from "react";
+import { store } from "@/store";
+import { Provider } from "react-redux";
+import { PrinterIcon } from "react-native-heroicons/outline";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,6 +27,8 @@ export default function RootLayout() {
 
 
   return (
+    <Provider store={store}>
+
     <Stack >
       <Stack.Screen
         name="index"
@@ -45,5 +49,6 @@ export default function RootLayout() {
         }}
       />
     </Stack>
+    </Provider>
   );
 }

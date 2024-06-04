@@ -9,8 +9,12 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import LocationIcon from "../ui/LocationIcon";
+import { useNavigation } from "expo-router";
 
 const LocationRequestModal = () => {
+  const navigation =useNavigation<any>()
+
+
   const [showModal, setShowModal] = useState(true);
 
   //this is the function to request the usr's location access
@@ -20,11 +24,12 @@ const LocationRequestModal = () => {
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the camera");
+        console.log("You can use the location");
       } else {
-        console.log("Camera permission denied");
+        console.log("location permission denied");
       }
       setShowModal(false);
+      navigation.navigate("welcome");
     } catch (err) {
       console.warn(err);
     }
@@ -32,19 +37,20 @@ const LocationRequestModal = () => {
 
   //funtion to handle the
   const handlePermissionDenied = () => {
+    navigation.navigate("welcome");
     setShowModal(false);
   };
 
   return (
     <Modal
       isVisible={showModal}
-      className="bg-white h-[400px] justify-start pt-10 rounded-xl"
+      className="bg-white h-[400px] justify-start pt-12 rounded-xl"
       style={styles.modal}
     >
       <LocationIcon />
 
 
-      <View  className="items-center gap-2 pt-8">
+      <View  className="items-center gap-2 pt-12">
         <Text className="text-2xl font-QuickSand font-semibold">
           Enable your location
         </Text>
@@ -54,7 +60,7 @@ const LocationRequestModal = () => {
       </View>
 
 
-      <View className="mt-8 px-5">
+      <View className="mt-12 px-5">
         <TouchableOpacity
           className="px-4 bg-green-500 rounded-lg hover:scale-105 transition animate-pulse"
           onPress={handlePermissionGranted}
@@ -62,10 +68,10 @@ const LocationRequestModal = () => {
           <Text className="text-white px-3 py-2 text-lg text-center">Use my location</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className="px-4 rounded-lg hover:scale-105 transition animate-pulse"
+          className="px-4 rounded-lg hover:scale-105 transition animate-pulse mt-2"
           onPress={handlePermissionDenied}
         >
-          <Text className="px-3 py-2 text-lg text-center"> Skip for now</Text>
+          <Text className="px-3 py-2 text-lg text-center text-gray-600"> Skip for now</Text>
         </TouchableOpacity>
       </View>
     </Modal>
