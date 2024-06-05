@@ -13,19 +13,19 @@ const SetupPassword = () => {
     <SafeAreaView className="bg-white flex-1 px-2">
       <Back />
      <View className="mb-8 mt-14">
-        <Text className="text-3xl mt-8 text-center">Set password</Text>
+        <Text className="text-3xl mt-8 text-center">Set new password</Text>
         <Text className="text-gray-400 text-lg text-center">
           set your password
         </Text>
       </View>
       <View className="flex-1">
-        <PasswordInput placeholder="input your password" />
+        <PasswordInput placeholder="Enter new  password" />
         <PasswordInput placeholder="confirm password" />
       <Text className="text-gray-400 text-[15px]">Atleast a number or a special character</Text>
       </View>
 
       <TouchableOpacity className="bg-emerald-600 items-center rounded-lg  mb-12 p-3" onPress={()=>navigation.navigate("Profile")}>
-          <Text className="text-white text-xl">Register </Text>
+          <Text className="text-white text-xl">save </Text>
         </TouchableOpacity>
     </SafeAreaView>
   );

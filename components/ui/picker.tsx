@@ -4,45 +4,16 @@ import RNPickerSelect from 'react-native-picker-select'
 import { SelectCountry } from 'react-native-element-dropdown';
 
 
-const local_data = [
-  {
-    value: '1',
-    lable: 'Country 1',
-    image: {
-      uri: '../../assets/ride_share/Flag (1).png',
-    },
-  },
-  {
-    value: '2',
-    lable: 'Country 2',
-    image: {
-      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
-    },
-  },
-  {
-    value: '3',
-    lable: 'Country 3',
-    image: {
-      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
-    },
-  },
-  {
-    value: '4',
-    lable: 'Country 4',
-    image: {
-      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
-    },
-  },
-  {
-    value: '5',
-    lable: 'Country 5',
-    image: {
-      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
-    },
-  },
-];
+export interface country_data {
+  value:string,
+  lable:string,
+  image:{
+    uri:string
+  }
+}
 
-export default function  SelectCountryScreen  () {
+
+export default function  SelectCountryScreen({data}:{data:Array<country_data>}) {
   const [country, setCountry] = useState('1');
 
   return (
@@ -57,7 +28,7 @@ export default function  SelectCountryScreen  () {
       search
       maxHeight={200}
       value={country}
-      data={local_data}
+      data={data}
       valueField="value"
       labelField="lable"
       imageField="image"
@@ -103,8 +74,6 @@ export const GenderPicker:React.FC =()=>{
 
 const styles = StyleSheet.create({
   dropdown: {
-    margin: 16,
-    height: 40,
     flex:1,
     width:100
   },
@@ -117,14 +86,13 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
-    marginLeft: 8,
   },
   iconStyle: {
     width: 20,
     height: 20,
   },
   inputSearchStyle: {
-    height: 40,
+    height: 20,
     fontSize: 16,
   },
 });

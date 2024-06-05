@@ -21,7 +21,7 @@ const WelcomeScreen = () => {
           <Text className="text-white text-lg">Create an account</Text>
         </Pressable>
         <Pressable className="rounded-lg border border-green-700 items-center py-3 justfy-center">
-          <Text className="text-lg">login</Text>
+          <Text className="text-lg" onPress={()=>router.navigate("authentication/signIn")}>login</Text>
         </Pressable>
       </View>
     </SafeAreaView>
