@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "expo-router";
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
+import { Polygon,Svg } from "react-native-svg";
 
 export default function utils() {
   return (
@@ -25,3 +26,29 @@ export const Back = () => {
     </>
   );
 };
+
+export const Hexagon = ({ width, height }:{width:number,height:number}) => {
+  // Calculate the points based on width and height
+  const points = `
+    ${width / 2},${height * 0.05} 
+    ${width * 0.95},${height * 0.25} 
+    ${width * 0.95},${height * 0.75} 
+    ${width / 2},${height * 0.95} 
+    ${width * 0.05},${height * 0.75} 
+    ${width * 0.05},${height * 0.25}
+  `;
+
+  return (
+    <View>
+      <Svg height={height} width={width}>
+        <Polygon
+          points={points}
+          fill="#33d399"
+          stroke="#00CCBB"
+          strokeWidth="1"
+        />
+      </Svg>
+    </View>
+  );
+};
+// ("fill:lime;stroke:purple;stroke-width:1");

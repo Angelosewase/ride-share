@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   PermissionsAndroid,
   TouchableOpacity,
@@ -10,28 +9,32 @@ import {
 import Modal from "react-native-modal";
 import LocationIcon from "../ui/LocationIcon";
 import { useNavigation } from "expo-router";
+import { setUserlocation } from "@/features/locationSlice";
+import * as Location from "expo-location";
+import { useDispatch } from "react-redux";
 
 const LocationRequestModal = () => {
-  const navigation =useNavigation<any>()
-
+  const dispatch = useDispatch()
+  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const navigation = useNavigation<any>();
 
   const [showModal, setShowModal] = useState(true);
 
-  //this is the function to request the usr's location access
+  //this is the function to request the user to acces his/her location
   const handlePermissionGranted = async () => {
     try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log("You can use the location");
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === Location.PermissionStatus.GRANTED) {
+        let geolocation = await Location.getCurrentPositionAsync({});
+        setLocation(geolocation);
+        dispatch(setUserlocation({lat:geolocation?.coords?.latitude,long:geolocation?.coords?.longitude}))
       } else {
-        console.log("location permission denied");
+        console.log("Location permission denied");
       }
       setShowModal(false);
       navigation.navigate("welcome");
     } catch (err) {
-      console.warn(err);
+      console.warn("Error requesting location permission", err);
     }
   };
 
@@ -49,8 +52,7 @@ const LocationRequestModal = () => {
     >
       <LocationIcon />
 
-
-      <View  className="items-center gap-2 pt-12">
+      <View className="items-center gap-2 pt-12">
         <Text className="text-2xl font-QuickSand font-semibold">
           Enable your location
         </Text>
@@ -59,19 +61,23 @@ const LocationRequestModal = () => {
         </Text>
       </View>
 
-
       <View className="mt-12 px-5">
         <TouchableOpacity
           className="px-4 bg-green-500 rounded-lg hover:scale-105 transition animate-pulse"
           onPress={handlePermissionGranted}
         >
-          <Text className="text-white px-3 py-2 text-lg text-center">Use my location</Text>
+          <Text className="text-white px-3 py-2 text-lg text-center">
+            Use my location
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           className="px-4 rounded-lg hover:scale-105 transition animate-pulse mt-2"
           onPress={handlePermissionDenied}
         >
-          <Text className="px-3 py-2 text-lg text-center text-gray-600"> Skip for now</Text>
+          <Text className="px-3 py-2 text-lg text-center text-gray-600">
+            {" "}
+            Skip for now
+          </Text>
         </TouchableOpacity>
       </View>
     </Modal>

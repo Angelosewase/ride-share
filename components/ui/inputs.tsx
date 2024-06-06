@@ -1,6 +1,8 @@
 import { View, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { EyeSlashIcon, EyeIcon } from "react-native-heroicons/outline";
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 
 const PasswordInput = ({placeholder}:{placeholder:string}) => {
   const [password, setPassword] = useState<string>('');
@@ -38,6 +40,26 @@ const PasswordInput = ({placeholder}:{placeholder:string}) => {
         )}
       </TouchableOpacity>
     </View>
+  );
+};
+
+
+export function GooglePlacesInput(){
+  return (
+    <GooglePlacesAutocomplete
+      placeholder='Search'
+      onPress={(data, details = null) => {
+        // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+      }}
+      onFail={(error)=>console.log("failed",error)}
+      onNotFound={()=>console.log(('not found'))}
+      query={{
+        key: 'AIzaSyCgknORfb9F_EZ4OC5MmhGYY8QDndkRFZ4',
+        language: 'en',
+      }}
+      debounce={3000}
+    />
   );
 };
 
