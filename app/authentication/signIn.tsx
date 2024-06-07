@@ -37,7 +37,7 @@ const SignIn = () => {
 
       <TouchableOpacity
         className="bg-emerald-500 items-center rounded-lg mt-11 mb-4 p-3"
-        onPress={() => router.navigate("home")}
+        onPress={() => router.navigate("authentication/EnableLocation")}
       >
         <Text className="text-white text-xl">Sign in </Text>
       </TouchableOpacity>

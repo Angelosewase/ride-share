@@ -4,12 +4,10 @@ import { Tabs } from "expo-router";
 import {
   HomeIcon,
   ReceiptPercentIcon,
-  HeartIcon,
   WalletIcon,
 } from "react-native-heroicons/outline";
-import {UserIcon} from 'react-native-heroicons/solid'
+import { UserIcon, HeartIcon } from "react-native-heroicons/solid";
 import { Hexagon } from "@/components/ui/utils";
-
 
 export default function TabsLayout() {
   return (
@@ -19,7 +17,7 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: "#000000",
         tabBarStyle: { ...styles.tabBar },
         tabBarShowLabel: false,
-        tabBarHideOnKeyboard:true
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tabs.Screen
@@ -65,15 +63,16 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => (
             <View className="-mt-16 items-center relative">
               <Hexagon width={80} height={90} />
-              <Text style={{ color: color }} className="text-sm font-semibold">wallet</Text>
+              <Text style={{ color: color }} className="text-sm font-semibold">
+                wallet
+              </Text>
               <View className="absolute  top-6">
-              <WalletIcon  stroke={'white'} size={35}/>
-
+                <WalletIcon stroke={"white"} size={35} />
               </View>
             </View>
           ),
           tabBarShowLabel: false,
-          tabBarHideOnKeyboard:true
+          tabBarHideOnKeyboard: true,
         }}
       />
       <Tabs.Screen

@@ -3,12 +3,7 @@ import { Stack } from "expo-router";
 const AuthenticationLayout = () => {
   return (
     <Stack>
-      <Stack.Screen
-        name="EnableLocation"
-        options={{
-          headerShown: false,
-        }}
-      />
+
       <Stack.Screen
         name="welcome"
         options={{
@@ -58,6 +53,12 @@ const AuthenticationLayout = () => {
       />
       <Stack.Screen
         name="setNewPassword"
+        options={{
+          headerShown: false,
+        }}
+      />
+            <Stack.Screen
+        name="EnableLocation"
         options={{
           headerShown: false,
         }}

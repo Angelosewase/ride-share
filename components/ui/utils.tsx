@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "expo-router";
-import { ChevronLeftIcon } from "react-native-heroicons/outline";
-import { Polygon,Svg } from "react-native-svg";
+import { ChevronLeftIcon, Bars3Icon } from "react-native-heroicons/outline";
+import { Polygon, Svg } from "react-native-svg";
 
 export default function utils() {
   return (
@@ -27,7 +27,13 @@ export const Back = () => {
   );
 };
 
-export const Hexagon = ({ width, height }:{width:number,height:number}) => {
+export const Hexagon = ({
+  width,
+  height,
+}: {
+  width: number;
+  height: number;
+}) => {
   // Calculate the points based on width and height
   const points = `
     ${width / 2},${height * 0.05} 
@@ -51,4 +57,20 @@ export const Hexagon = ({ width, height }:{width:number,height:number}) => {
     </View>
   );
 };
-// ("fill:lime;stroke:purple;stroke-width:1");
+
+export const HamburgerIcon = ({
+  setshowSideMenu,
+}: {
+  setshowSideMenu: Function;
+}) => {
+  return (
+    <>
+      <TouchableOpacity
+        className=" rounded-lg bg-emerald-400 p-2 items-center justify-center  "
+        onPress={() => setshowSideMenu(true)}
+      >
+        <Bars3Icon size={30} stroke={"#000000"} />
+      </TouchableOpacity>
+    </>
+  );
+};

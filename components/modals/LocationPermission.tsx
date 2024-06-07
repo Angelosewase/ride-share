@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import LocationIcon from "../ui/LocationIcon";
-import { useNavigation } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import { setUserlocation } from "@/features/locationSlice";
 import * as Location from "expo-location";
 import { useDispatch } from "react-redux";
@@ -32,7 +32,7 @@ const LocationRequestModal = () => {
         console.log("Location permission denied");
       }
       setShowModal(false);
-      navigation.navigate("welcome");
+      router.navigate("home");
     } catch (err) {
       console.warn("Error requesting location permission", err);
     }
@@ -40,7 +40,7 @@ const LocationRequestModal = () => {
 
   //funtion to handle the
   const handlePermissionDenied = () => {
-    navigation.navigate("welcome");
+    router.navigate("home");
     setShowModal(false);
   };
 

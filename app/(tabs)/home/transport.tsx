@@ -10,7 +10,6 @@ import MapView, { Marker } from "react-native-maps";
 import { useSelector } from "react-redux";
 import { userlocationSelector } from "@/features/locationSlice";
 import {
-  Bars3Icon,
   BellIcon,
   ViewfinderCircleIcon,
   MagnifyingGlassIcon,
@@ -18,6 +17,7 @@ import {
 } from "react-native-heroicons/outline";
 import { GooglePlacesInput } from "@/components/ui/inputs";
 import SideMenu from "@/components/ui/sideMenu";
+import { HamburgerIcon } from "@/components/ui/utils";
 
 const TransportScreen = () => {
   const location = useSelector(userlocationSelector);
@@ -44,9 +44,7 @@ const TransportScreen = () => {
         />
       </MapView>
       <View className=" flex-row   justify-between absolute top-16 px-3 w-full">
-        <TouchableOpacity className=" rounded-lg bg-emerald-400 p-2 items-center justify-center  " onPress={()=>setshowSideMenu(true)}>
-          <Bars3Icon size={30} stroke={"#000000"} />
-        </TouchableOpacity>
+       <HamburgerIcon setshowSideMenu={setshowSideMenu}/>
         <View className=" rounded-lg bg-gray-50 p-1 items-end justify-center">
           <BellIcon size={30} stroke={"#000000"} />
         </View>

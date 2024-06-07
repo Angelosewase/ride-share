@@ -11,6 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Back } from "@/components/ui/utils";
 import CountryPicker, { DropdownComponent } from "@/components/ui/dropDowns";
 import { countryData, cityData } from "@/placeholderData";
+import { router } from "expo-router";
 
 const Profile = () => {
   return (
@@ -64,10 +65,10 @@ const Profile = () => {
       </View>
 
       <View className="flex-row items-center  gap-4 mt-6">
-        <TouchableHighlight className="border border-emerald-500 rounded-xl py-3  px-8 flex-1">
+        <TouchableOpacity className="border border-emerald-500 rounded-xl py-3  px-8 flex-1" onPress={()=>router.navigate('authentication/welcome')}>
           <Text className="text-xl text-center">Cancel</Text>
-        </TouchableHighlight>
-        <TouchableOpacity className="border border-emerald-600 bg-emerald-500 rounded-lg py-3 px-8 flex-1">
+        </TouchableOpacity>
+        <TouchableOpacity className="border border-emerald-600 bg-emerald-500 rounded-lg py-3 px-8 flex-1" onPress={()=>router.navigate("authentication/EnableLocation")}>
           <Text className="text-xl text-white text-center">save</Text>
         </TouchableOpacity>
       </View>
