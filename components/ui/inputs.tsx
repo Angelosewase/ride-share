@@ -55,7 +55,7 @@ export function GooglePlacesInput(){
       onFail={(error)=>console.log("failed",error)}
       onNotFound={()=>console.log(('not found'))}
       query={{
-        key: 'AIzaSyCgknORfb9F_EZ4OC5MmhGYY8QDndkRFZ4',
+        key: 'your api key',
         language: 'en',
       }}
       debounce={3000}
