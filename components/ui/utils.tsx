@@ -1,7 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useNavigation } from "expo-router";
-import { ChevronLeftIcon, Bars3Icon } from "react-native-heroicons/outline";
+import {
+  ChevronLeftIcon,
+  Bars3Icon,
+  BellIcon,
+} from "react-native-heroicons/outline";
 import { Polygon, Svg } from "react-native-svg";
 
 export default function utils() {
@@ -70,6 +74,20 @@ export const HamburgerIcon = ({
         onPress={() => setshowSideMenu(true)}
       >
         <Bars3Icon size={30} stroke={"#000000"} />
+      </TouchableOpacity>
+    </>
+  );
+};
+
+export const NotificationIcon = () => {
+  const navigation = useNavigation<any>();
+  return (
+    <>
+      <TouchableOpacity
+        className=" rounded-lg bg-gray-50 p-1 items-end justify-center"
+        onPress={() => navigation.navigate("Notification")}
+      >
+        <BellIcon size={30} stroke={"#000000"} />
       </TouchableOpacity>
     </>
   );

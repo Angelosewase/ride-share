@@ -11,6 +11,12 @@ import {
   ArrowLeftEndOnRectangleIcon,
 } from "react-native-heroicons/outline";
 
+
+export interface modalstates{
+  state:boolean,
+  setState:Function
+}
+
 export interface sidenavItem {
   Icon: any;
   title: string;
@@ -47,7 +53,7 @@ const navItems: Array<sidenavItem> = [
   },
 ];
 
-const Back = ({ setState, state }: { setState: Function; state: boolean }) => {
+const Back = ({ setState, state }: modalstates) => {
   return (
     <>
       <TouchableOpacity
@@ -75,10 +81,7 @@ const SideNavItem = ({Icon,title}:sidenavItem) => {
 const SideMenu = ({
   setState,
   state,
-}: {
-  setState: Function;
-  state: boolean;
-}) => {
+}:modalstates) => {
   return (
     <>
       <Modal
@@ -87,7 +90,6 @@ const SideMenu = ({
         style={styles.modalView}
         animationIn={"slideInLeft"}
         animationOut={"slideOutLeft"}
-        animationOutTiming={2000}
       >
         <View className=" mb-auto py-5">
           <Back setState={setState} state={state} />

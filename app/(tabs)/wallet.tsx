@@ -1,9 +1,8 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { HamburgerIcon } from "@/components/ui/utils";
+import { HamburgerIcon, NotificationIcon } from "@/components/ui/utils";
 import SideMenu from "@/components/ui/sideMenu";
-import { BellIcon } from "react-native-heroicons/outline";
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from "react-native-heroicons/solid";
 
 export interface financialStatsProps {
@@ -61,9 +60,7 @@ const Wallet = () => {
       )}
       <View className=" flex-row justify-between mt-4 w-full">
         <HamburgerIcon setshowSideMenu={setshowSideMenu} />
-        <View className=" rounded-lg bg-gray-50 p-1 items-end justify-center">
-          <BellIcon size={30} stroke={"#000000"} />
-        </View>
+        <NotificationIcon />
       </View>
       <View className="w-full items-center mt-8">
         <TouchableOpacity className="border border-emerald-500 rounded-lg px-12 py-3 ml-auto mr-1.5 ">
