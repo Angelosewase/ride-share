@@ -3,14 +3,17 @@ import { Rootstate } from "@/store";
 
 export interface Location {
   usersLocation: {
+    name?:string,
     lat: null |number;
     long: null |number;
   };
   from: {
+    name?:string,
     lat: null |number;
     long:  null |number;
   };
   to: {
+    name?:string,
     lat:  null |number;
     long: null |number;
   };
@@ -18,8 +21,9 @@ export interface Location {
 
 
 type coordinates={
-    long:number,
-    lat:number
+    name?:string,
+    long:number | null,
+    lat:number | null
 }
 
 const initialLocation: Location = {
@@ -42,16 +46,18 @@ const locationSlice = createSlice({
   initialState: initialLocation,
   reducers: {
     addUsersLocation:(state,action:PayloadAction<coordinates>)=>{
-      state.usersLocation.lat= action.payload.lat
-      state.usersLocation.long=action.payload.long
+      state.usersLocation.lat= action.payload?.lat
+      state.usersLocation.long=action.payload?.long
     },
     addfrom:(state,action:PayloadAction<coordinates>)=>{
-        state.from.lat= action.payload.lat
-        state.from.long=action.payload.long
+        state.from.lat= action.payload?.lat
+        state.from.long=action.payload?.long
+        state.from.name=action.payload?.name
     }, 
     addTo:(state,action:PayloadAction<coordinates>)=>{
-        state.to.lat= action.payload.lat
-        state.to.long=action.payload.long
+        state.to.lat= action.payload?.lat
+        state.to.long=action.payload?.long
+        state.to.name=action.payload?.name
     },
 
 

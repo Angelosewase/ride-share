@@ -1,5 +1,12 @@
-import { View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity } from "react-native";
-import React, { useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import React from "react";
 import Modal from "react-native-modal";
 import { modalstates } from "../ui/sideMenu";
 import { XMarkIcon } from "react-native-heroicons/solid";
@@ -9,6 +16,10 @@ import {
   ArrowsPointingInIcon,
 } from "react-native-heroicons/outline";
 import { MapPinIcon as PinIcon } from "react-native-heroicons/solid";
+import { useDispatch } from "react-redux";
+import { setTolocation, setFromlocation } from "@/features/locationSlice";
+import { useRouter } from "expo-router";
+// import { useNavigation } from "expo-router";
 
 interface recentPlace {
   name: string;
@@ -16,22 +27,10 @@ interface recentPlace {
   distance: number;
 }
 
-const RecentPlace = ({ name, location, distance }: recentPlace) => {
-  return (
-    <>
-      <View className="flex-row w-full px-3 py-3 items-start space-x-2">
-        <PinIcon size={30} className="" color={"#000000"} />
-        <View className="flex-1">
-          <Text className="text-xl font-semibold ">{name}</Text>
-          <Text className=" text-gray-400 ">{location}</Text>
-        </View>
-        <Text className="text-xl font-semibold">{distance} KM</Text>
-      </View>
-    </>
-  );
-};
-
 export default function SelectLocations({ state, setState }: modalstates) {
+//  const navigation=useNavigation<any>()
+  const router = useRouter()
+  const dispatch = useDispatch();
   const [focused, setFocused] = React.useState<boolean>(false);
   const [fromInput, setFromInput] = React.useState<string>();
   const [toInput, setToInput] = React.useState<string>();
@@ -60,6 +59,13 @@ export default function SelectLocations({ state, setState }: modalstates) {
       setIsSumbited(false);
     }
   }
+
+  function confirmlocations() {
+    dispatch(setFromlocation({ name: fromInput, lat: null, long: null }));
+    dispatch(setTolocation({ name: toInput, lat: null, long: null }));
+    router.navigate('transport')
+  }
+
   return (
     <Modal
       isVisible={state}
@@ -156,14 +162,31 @@ export default function SelectLocations({ state, setState }: modalstates) {
             </View>
             <Text className="text-xl font-semibold self-center">1.1km </Text>
           </View>
-          <TouchableOpacity className="w-[95%] rounded-lg bg-emerald-600 py-3 my-auto">
-            <Text className="text-center text-white text-lg font-semibold">Confirm location</Text>
+          <TouchableOpacity className="w-[95%] rounded-lg bg-emerald-600 py-3 my-auto" onPress={confirmlocations}>
+            <Text className="text-center text-white text-lg font-semibold">
+              Confirm location
+            </Text>
           </TouchableOpacity>
         </>
       )}
     </Modal>
   );
 }
+
+const RecentPlace = ({ name, location, distance }: recentPlace) => {
+  return (
+    <>
+      <View className="flex-row w-full px-3 py-3 items-start space-x-2">
+        <PinIcon size={30} className="" color={"#000000"} />
+        <View className="flex-1">
+          <Text className="text-xl font-semibold ">{name}</Text>
+          <Text className=" text-gray-400 ">{location}</Text>
+        </View>
+        <Text className="text-xl font-semibold">{distance} KM</Text>
+      </View>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   Modal: {

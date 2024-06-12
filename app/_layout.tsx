@@ -9,10 +9,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
-    'QuickSand': require('@/assets/fonts/quickSand/Quicksand-VariableFont_wght.ttf'),
+    QuickSand: require("@/assets/fonts/quickSand/Quicksand-VariableFont_wght.ttf"),
   });
 
-  const onLayoutRootView =async () => {
+  const onLayoutRootView = async () => {
     if (fontsLoaded || fontError) {
       await SplashScreen.hideAsync();
     }
@@ -22,42 +22,48 @@ export default function RootLayout() {
     return null;
   }
 
-  onLayoutRootView()
-
-
+  onLayoutRootView();
 
   return (
     <Provider store={store}>
-
-    <Stack >
-      <Stack.Screen
-        name="index"
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="onBoarding"
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="authentication"
-        options={{
-          headerShown: false,
-        }}
-      />   
-      <Stack.Screen
-        name="(tabs)"
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen name="Notification" options={{
-        headerShown:false
-      }}/>
-    </Stack>
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="onBoarding"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="authentication"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Notification"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="transport"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
     </Provider>
   );
 }
