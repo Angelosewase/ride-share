@@ -10,6 +10,7 @@ import {
   Cog6ToothIcon,
   ArrowLeftEndOnRectangleIcon,
 } from "react-native-heroicons/outline";
+import { useRouter } from "expo-router";
 
 
 export interface modalstates{
@@ -19,37 +20,48 @@ export interface modalstates{
 
 export interface sidenavItem {
   Icon: any;
-  title: string;
+  title: string,
+  link:string
+  setstate?:Function
 }
+
+
 
 const navItems: Array<sidenavItem> = [
   {
     Icon: NewspaperIcon ,
     title: "History",
+    link:'history'
   },
   {
     Icon: ExclamationCircleIcon ,
-    title: "Company",
+    title: "Complain",
+    link:"complain"
   },
   {
     Icon: UserGroupIcon ,
     title: "Refferal",
+    link:'referral'
   },
   {
     Icon: ExclamationCircleIcon ,
     title: "About us",
+    link:'aboutUs'
   },
   {
     Icon: Cog6ToothIcon,
     title: "settings",
+    link:''
   },
   {
     Icon: QuestionMarkCircleIcon,
     title: "Help and support",
+    link:'helpSupport'
   },
   {
     Icon: ArrowLeftEndOnRectangleIcon ,
     title: "Log out",
+    link:''
   },
 ];
 
@@ -67,13 +79,21 @@ const Back = ({ setState, state }: modalstates) => {
   );
 };
 
-const SideNavItem = ({Icon,title}:sidenavItem) => {
+const SideNavItem = ({Icon,title,link ,setstate}:sidenavItem) => {
+  const router= useRouter()
+   function handlenavigation(){
+    if(setstate){
+      setstate(false) 
+    }
+
+    router.navigate(link)
+   }
   return (
     <>
-      <View className="flex-row space-x-4 border-b  py-2 px-3 items-center mt-3 border-gray-300">
+      <TouchableOpacity className="flex-row space-x-4 border-b  py-2 px-3 items-center mt-3 border-gray-300" onPress={handlenavigation}>
         <Icon size={25} color={"#000000"} />
         <Text className="font-semibold text-lg">{title}</Text>
-      </View>
+      </TouchableOpacity>
     </>
   );
 };
@@ -100,7 +120,7 @@ const SideMenu = ({
               <Text className=" texl-lg">Nate@email.com</Text>
             </View>
           </View>
-         <FlatList data={navItems} renderItem={(data)=><SideNavItem Icon={data.item.Icon} title={data.item.title}/>}/>
+         <FlatList data={navItems} renderItem={(data)=><SideNavItem Icon={data.item.Icon} title={data.item.title} link={data.item.link} setstate={setState}/>}/>
         </View>
       </Modal>
     </>

@@ -63,6 +63,16 @@ export default function RootLayout() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="complain"
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="history" options={{ headerShown: false }} />
+        <Stack.Screen name="referral" options={{ headerShown: false }} />
+        <Stack.Screen name="aboutUs" options={{ headerShown: false }} />
+        <Stack.Screen name="helpSupport" options={{ headerShown: false }} />
       </Stack>
     </Provider>
   );
