@@ -73,6 +73,7 @@ export default function RootLayout() {
         <Stack.Screen name="referral" options={{ headerShown: false }} />
         <Stack.Screen name="aboutUs" options={{ headerShown: false }} />
         <Stack.Screen name="helpSupport" options={{ headerShown: false }} />
+        <Stack.Screen name="settings" options={{ headerShown: false }} />
       </Stack>
     </Provider>
   );

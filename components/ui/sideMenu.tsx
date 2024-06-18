@@ -51,7 +51,7 @@ const navItems: Array<sidenavItem> = [
   {
     Icon: Cog6ToothIcon,
     title: "settings",
-    link:''
+    link:'settings'
   },
   {
     Icon: QuestionMarkCircleIcon,
