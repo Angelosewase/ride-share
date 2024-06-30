@@ -188,7 +188,7 @@ const RecentPlace = ({ name, location, distance }: recentPlace) => {
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   Modal: {
     marginBottom: 0,
     marginHorizontal: 0,

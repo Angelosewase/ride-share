@@ -25,7 +25,9 @@ const LocationRequestModal = () => {
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status === Location.PermissionStatus.GRANTED) {
-        let geolocation = await Location.getCurrentPositionAsync({});
+        let geolocation = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Highest,
+        });
         setLocation(geolocation);
         dispatch(setUserlocation({lat:geolocation?.coords?.latitude,long:geolocation?.coords?.longitude}))
       } else {
@@ -64,7 +66,7 @@ const LocationRequestModal = () => {
       <View className="mt-12 px-5">
         <TouchableOpacity
           className="px-4 bg-green-500 rounded-lg hover:scale-105 transition animate-pulse"
-          onPress={handlePermissionGranted}
+          onPress={()=>handlePermissionGranted()}
         >
           <Text className="text-white px-3 py-2 text-lg text-center">
             Use my location

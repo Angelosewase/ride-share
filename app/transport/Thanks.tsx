@@ -2,8 +2,25 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Back } from "@/components/ui/utils";
+import { useRouter } from "expo-router";
+import { useContext } from "react";
+import { myContext } from "../_layout";
+
+
 
 const Thanks = () => {
+  const context= useContext(myContext)
+  const setState= context?.setState
+
+  function handleconfirmation(){
+    router.navigate('home/transport')
+    if(setState){
+      setState(true)
+    }
+
+  }
+
+  const router= useRouter()
   return (
     <SafeAreaView className="flex-1 bg-white items-center  px-3">
       <View className="self-start">
@@ -24,9 +41,10 @@ const Thanks = () => {
 
       <TouchableOpacity
         className="w-full py-3 bg-emerald-500 rounded-lg mb-4 mt-auto"
+        onPress={()=>handleconfirmation()}
       >
         <Text className="font-semibold text-white text-center text-lg">
-          Confirm ride{" "}
+          Confirm ride
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

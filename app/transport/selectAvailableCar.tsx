@@ -20,9 +20,6 @@ const CarDisplay = ({...data }: car) => {
     router.navigate('transport/CarDetails')
   }
 
-
-
-
   return (
     <>
       <View className="w-full  border border-emerald-500 rounded-lg bg-emerald-50 py-3 px-4 mb-4">

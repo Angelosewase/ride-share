@@ -129,7 +129,7 @@ const SideMenu = ({
 
 export default SideMenu;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   modalView: {
     marginLeft: 0,
     marginBottom: 0,

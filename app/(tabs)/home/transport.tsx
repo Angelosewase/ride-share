@@ -1,10 +1,5 @@
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  Pressable,
-} from "react-native";
-import React from "react";
+import { TouchableOpacity, View, Text, Pressable } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { useSelector } from "react-redux";
 import { userlocationSelector } from "@/features/locationSlice";
@@ -18,19 +13,45 @@ import SideMenu from "@/components/ui/sideMenu";
 import { HamburgerIcon } from "@/components/ui/utils";
 import { NotificationIcon } from "@/components/ui/utils";
 import SelectLocations from "@/components/modals/SelectLocations";
+import TransportDetails from "@/components/modals/TransportDetails";
+import { paymentDetailsSelector } from "@/features/paymentSlice";
+import { myContext } from "@/app/_layout";
 
 const TransportScreen = () => {
   const location = useSelector(userlocationSelector);
-  const [showsSideMenu,setshowSideMenu]=React.useState<boolean>(false)
-  const [showselectLocations,setShowSelectLocations]=React.useState<boolean>(false)
-    return (
+  const [showsSideMenu, setshowSideMenu] = React.useState<boolean>(false);
+  const [showselectLocations, setShowSelectLocations] =
+    React.useState<boolean>(false);
+  const [showtransportdetails, setshowtransportdetails] =
+    React.useState<boolean>(false);
+
+  const detailsSelector = useSelector(paymentDetailsSelector);
+
+  const context = useContext(myContext);
+  const state = context?.state;
+  const setState= context?.setState
+
+
+  return (
     <View className="flex-1">
-     <SideMenu state={showsSideMenu} setState={setshowSideMenu}/>
-     <SelectLocations  state={showselectLocations} setState={setShowSelectLocations}/>
+      <SideMenu state={showsSideMenu} setState={setshowSideMenu} />
+
+      <SelectLocations
+        state={showselectLocations}
+        setState={setShowSelectLocations}
+      />
+
+      {state && (
+        <TransportDetails
+          state={state}
+          setState={setState as Function}
+        />
+      )}
+
       <MapView
         initialRegion={{
-          latitude:location?.lat ||29.87 ,
-          longitude:location.long || 1.9,
+          latitude: location?.lat || 51.5072,
+          longitude: location?.long || 0.1276,
           longitudeDelta: 0.0922,
           latitudeDelta: 0.0421,
         }}
@@ -38,16 +59,16 @@ const TransportScreen = () => {
       >
         <Marker
           coordinate={{
-            latitude:  location?.lat ||29.87 ,
-            longitude:location.long || 1.9,
+            latitude: location?.lat || 29.87,
+            longitude: location.long || 1.9,
           }}
           title="your location"
           pinColor="black"
         />
       </MapView>
       <View className=" flex-row   justify-between absolute top-16 px-3 w-full">
-       <HamburgerIcon setshowSideMenu={setshowSideMenu}/>
-       <NotificationIcon />
+        <HamburgerIcon setshowSideMenu={setshowSideMenu} />
+        <NotificationIcon />
       </View>
       <View className="absolute bottom-0 left-0 right-0">
         <View className="w-full justify-between px-3 flex-row my-4 items-center">
@@ -65,12 +86,15 @@ const TransportScreen = () => {
         <View className="p-3  mx-2  mb-32 border-2 rounded-lg bg-emerald-100 border-emerald-400 ">
           {/* this requires enabling billing account  i will be using a plain input till i enable it*/}
           {/* <GooglePlacesInput /> */}
-          <TouchableOpacity className="flex-row w-full p-3 bg-green-50 border border-emerald-400 items-center space-x-4 rounded-xl" onPress={()=>setShowSelectLocations(true)}>
+          <TouchableOpacity
+            className="flex-row w-full p-3 bg-green-50 border border-emerald-400 items-center space-x-4 rounded-xl"
+            onPress={() => {
+              setShowSelectLocations(!showselectLocations);
+            }}
+          >
             <MagnifyingGlassIcon size={22} stroke={"grey"} />
             <View className="flex-1 ">
-              <Text className="text-gray-500 text-lg">
-                Where Would You go 
-              </Text>
+              <Text className="text-gray-500 text-lg">Where Would You go</Text>
             </View>
             {/* <TextInput
               placeholder="Where would you go "
@@ -91,10 +115,7 @@ const TransportScreen = () => {
               <Text className="text-lg text-center">Delivery</Text>
             </Pressable>
           </View>
-
         </View>
-
-        
       </View>
     </View>
   );

@@ -1,7 +1,6 @@
 import { ImageSourcePropType } from "react-native";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Rootstate } from "@/store";
-import { InitialState } from "@react-navigation/native";
 
 type imagetype = Record<string, ImageSourcePropType>;
 
