@@ -59,7 +59,7 @@ const LocationRequestModal = () => {
           Enable your location
         </Text>
         <Text className="text-gray-500 items-center w-[70%] text-center text-lg leading-5">
-          Choose youe cloation to start finding request near you
+          Choose your location to start finding request near you
         </Text>
       </View>
 

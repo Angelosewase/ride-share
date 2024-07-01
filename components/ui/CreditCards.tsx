@@ -1,7 +1,10 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
 import { ImageSourcePropType } from "react-native";
-import { addCreditCardDetails, creditcardSelector } from "@/features/paymentSlice";
+import {
+  addCreditCardDetails,
+  creditcardSelector,
+} from "@/features/paymentSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 type imageSource = Record<string, ImageSourcePropType>;
@@ -54,13 +57,12 @@ export const CreditCard = ({
   setstate,
 }: props) => {
   const isSelected: boolean = state === id ? true : false;
-  const dispatch= useDispatch()
-
+  const dispatch = useDispatch();
 
   function handleclick() {
     setstate(id);
-    dispatch(addCreditCardDetails({numberDetails,image,expiryDate,id}))
-  } 
+    dispatch(addCreditCardDetails({ numberDetails, image, expiryDate, id }));
+  }
 
   return (
     <>
@@ -83,18 +85,63 @@ export const CreditCard = ({
 };
 
 const CreditCards = () => {
-  const defaultCard=useSelector(creditcardSelector)
-  const [selectedcard, setSelectedCard] = React.useState<number>(defaultCard?.id ||4);
+  const defaultCard = useSelector(creditcardSelector);
+  const [selectedcard, setSelectedCard] = React.useState<number>(
+    defaultCard?.id || 4
+  );
   return (
     <ScrollView className="mt-5  " showsVerticalScrollIndicator={false}>
       <Text className="text-2xl text-gray-600 font-semibold mb-5 ">
         select payment method
       </Text>
       {creditcardsdata.map((data, idx) => (
-        <CreditCard {...data} key={idx} state={selectedcard} setstate={setSelectedCard}/>
+        <CreditCard
+          {...data}
+          key={idx}
+          state={selectedcard}
+          setstate={setSelectedCard}
+        />
       ))}
     </ScrollView>
   );
 };
 
 export default CreditCards;
+
+const CreditCard2 = ({
+  numberDetails,
+  image,
+  expiryDate,
+}: {
+  numberDetails: number | string;
+  image: imageSource;
+  expiryDate: string;
+}) => {
+  return (
+    <>
+      <TouchableOpacity
+        className={`flex-row border border-emerald-500 bg-emerald-50 rounded p-2 w-full items-center space-x-2 mb-2 opacity-50`}
+      >
+        <Image source={image} />
+        <View>
+          <Text className="text-xl font-semibold tet-gray-600">
+            {numberDetails}
+          </Text>
+          <Text className="text-base text-gray-500">Expires:{expiryDate}</Text>
+        </View>
+      </TouchableOpacity>
+    </>
+  );
+};
+
+export const CreditCards2 = () => {
+  return (
+    <>
+      <ScrollView className="mt-5  " showsVerticalScrollIndicator={false}>
+        {creditcardsdata.map((data, idx) => (
+          <CreditCard2 {...data} key={idx} />
+        ))}
+      </ScrollView>
+    </>
+  );
+};

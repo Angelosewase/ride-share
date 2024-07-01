@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { HamburgerIcon, NotificationIcon } from "@/components/ui/utils";
 import SideMenu from "@/components/ui/sideMenu";
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from "react-native-heroicons/solid";
+import { useRouter } from "expo-router";
 
 export interface financialStatsProps {
   amount: number;
@@ -53,6 +54,13 @@ const TransactionRecord = ({ name, time, amount, type }: transactionProps) => {
 
 const Wallet = () => {
   const [showsSideMenu, setshowSideMenu] = React.useState<boolean>(false);
+
+
+  const router= useRouter()
+
+  function handleClick(){
+   router.navigate('wallet/Add_amount')
+  }
   return (
     <SafeAreaView className="bg-white flex-1  px-3">
       {showsSideMenu && (
@@ -63,7 +71,7 @@ const Wallet = () => {
         <NotificationIcon />
       </View>
       <View className="w-full items-center mt-8">
-        <TouchableOpacity className="border border-emerald-500 rounded-lg px-12 py-3 ml-auto mr-1.5 ">
+        <TouchableOpacity className="border border-emerald-500 rounded-lg px-12 py-3 ml-auto mr-1.5 " onPress={handleClick}> 
           <Text className="text-lg text-emerald-500 font-semibold">
             Add money
           </Text>

@@ -47,7 +47,7 @@ const TransportDetails = ({ state, setState }: modalstates) => {
       </View>
 
       <View className="flex-row items-center  gap-4 mt-2 px-3">
-        <TouchableOpacity className="border border-emerald-700 rounded-lg py-3  px-8 flex-1" onPress={()=>{setState(false); router.navigate('contact/callScreen')}}>
+        <TouchableOpacity className="border border-emerald-700 rounded-lg py-3  px-8 flex-1" onPress={()=>{setState(false); router.navigate('contact/CallScreen')}}>
           <Text className="text-xl text-center">Call</Text>
         </TouchableOpacity>
         <TouchableOpacity className="border border-emerald-600 bg-emerald-500 rounded-lg py-3 px-8 flex-1" onPress={()=>{setState(false);router.navigate('contact/messageScreen')}}>
